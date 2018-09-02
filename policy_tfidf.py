@@ -117,7 +117,7 @@ class policy_model_train:
         self.x_test_tfidf = tv.transform(self.x_test_tf)
         print(X_sum.toarray()) 
         
-     #利用训练样本选择词特征   
+     #利用训练样本选择词特征中   
     def tfvectorize(self):
         
         # divide the trainSet and testSet
@@ -170,7 +170,7 @@ class policy_model_train:
     def SVMTrain(self):
         cls = SVC(C=1,  kernel='linear',decision_function_shape='ovo',probability = True)
         cls.fit(self.x_train_tfidf, self.y_train)
-        
+        print(self.x_test_tfidf.shape, "\t", type(self.x_train_tfidf))
         self.classes3_ = cls.classes_
         self.pre_pro_svm = cls.predict_proba(self.x_test_tfidf)
         
@@ -246,4 +246,9 @@ class policy_model_train:
         self.calc_score(self.pre_pro, self.classes_)
         self.calc_score(self.pre_prob_lr, self.classes2_)
         self.calc_score_svm(self.pre_pro_svm, self.classes3_)
+
         
+if __name__ == '__main__':
+    path = 'E:\\liuhongbing\\work\\policy_tong_0712\\data_v1\\python_data\\modelResource\\origin_corpus'
+    pmt = policy_model_train(path)
+    pmt.train_NB()

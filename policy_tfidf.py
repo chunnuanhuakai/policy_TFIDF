@@ -11,7 +11,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
-
+from sklearn.feature_selection import SelectKBest
+from sklearn.feature_selection import chi2
 
 import pandas as pd
 import pickle
@@ -86,6 +87,11 @@ class policy_model_train:
         self.x_test_tfidf = tv.transform(self.x_test_tf)
 
     # 利用总训练样本选择词特征
+    # user chi check
+        ch2 = SelectKBest(chi2, k=2000)
+        self.x_train_tfidf = ch2.fit_transform(self.x_train_tfidf, self.y_train)
+        self.x_test_tfidf = ch2.transform(self.x_test_tfidf)
+      
     
     
     def tfvectorize_2(self):

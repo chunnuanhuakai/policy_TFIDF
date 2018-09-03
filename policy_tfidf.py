@@ -88,9 +88,9 @@ class policy_model_train:
 
     # 利用总训练样本选择词特征
     # user chi check
-        ch2 = SelectKBest(chi2, k=2000)
-        self.x_train_tfidf = ch2.fit_transform(self.x_train_tfidf, self.y_train)
-        self.x_test_tfidf = ch2.transform(self.x_test_tfidf)
+#        ch2 = SelectKBest(chi2, k=2000)
+#        self.x_train_tfidf = ch2.fit_transform(self.x_train_tfidf, self.y_train)
+#        self.x_test_tfidf = ch2.transform(self.x_test_tfidf)
       
     
     
